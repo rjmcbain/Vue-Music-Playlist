@@ -4,6 +4,9 @@
       <h1><router-link :to="{ name: 'Home' }">Music Playlist</router-link></h1>
       <!-- <p>Hello {{ user.displayName }}</p> -->
       <div class="links">
+        <router-link :to="{ name: 'CreatePlaylist' }" v-if="user"
+          >Create Playlist</router-link
+        >
         <button @click="handleClick" v-if="user">Logout</button>
         <router-link v-if="!user" class="btn" :to="{ name: 'Signup' }"
           >Sign Up</router-link
