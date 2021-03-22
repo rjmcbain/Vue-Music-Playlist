@@ -29,7 +29,7 @@ export default {
         displayName.value = "";
         email.value = "";
         password.value = "";
-        router.push({ name: "Home" });
+        router.push({ name: "UserPlaylists" });
       }
     };
     return { email, password, displayName, handleSubmit, error, isPending };

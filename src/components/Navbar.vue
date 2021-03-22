@@ -2,11 +2,15 @@
   <div class="navbar">
     <nav>
       <h1><router-link :to="{ name: 'Home' }">Music Playlist</router-link></h1>
-      <!-- <p>Hello {{ user.displayName }}</p> -->
+
       <div class="links">
         <router-link :to="{ name: 'CreatePlaylist' }" v-if="user"
           >Create Playlist</router-link
         >
+        <router-link :to="{ name: 'UserPlaylists' }" v-if="user"
+          >My Playlists</router-link
+        >
+        <span>Hi, There {{ user.displayName }}</span>
         <button @click="handleClick" v-if="user">Logout</button>
         <router-link v-if="!user" class="btn" :to="{ name: 'Signup' }"
           >Sign Up</router-link
@@ -65,5 +69,12 @@ nav .links a,
 button {
   margin-left: 16px;
   font-size: 14px;
+}
+span {
+  font-size: 14px;
+  display: inline-block;
+  margin-left: 16px;
+  padding-left: 16px;
+  border-left: 1px solid #eee;
 }
 </style>

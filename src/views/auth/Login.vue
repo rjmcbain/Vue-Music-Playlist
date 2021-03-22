@@ -26,7 +26,7 @@ export default {
         console.log("User Logged In");
         email.value = "";
         password.value = "";
-        router.push({ name: "Home" });
+        router.push({ name: "UserPlaylists" });
       }
     };
 
