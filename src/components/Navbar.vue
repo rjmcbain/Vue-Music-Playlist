@@ -4,20 +4,22 @@
       <h1><router-link :to="{ name: 'Home' }">Music Playlist</router-link></h1>
 
       <div class="links">
-        <router-link :to="{ name: 'CreatePlaylist' }" v-if="user"
-          >Create Playlist</router-link
-        >
-        <router-link :to="{ name: 'UserPlaylists' }" v-if="user"
-          >My Playlists</router-link
-        >
-        <span>Hi, There {{ user.displayName }}</span>
-        <button @click="handleClick" v-if="user">Logout</button>
-        <router-link v-if="!user" class="btn" :to="{ name: 'Signup' }"
-          >Sign Up</router-link
-        >
-        <router-link v-if="!user" class="btn" :to="{ name: 'Login' }"
-          >Log In</router-link
-        >
+        <div v-if="user">
+          <router-link :to="{ name: 'CreatePlaylist' }"
+            >Create Playlist</router-link
+          >
+          <router-link :to="{ name: 'UserPlaylists' }"
+            >My Playlists</router-link
+          >
+          <span>Hi There, {{ user.displayName }}</span>
+          <button @click="handleClick">Logout</button>
+        </div>
+        <div v-else>
+          <router-link class="btn" :to="{ name: 'Signup' }"
+            >Sign Up</router-link
+          >
+          <router-link class="btn" :to="{ name: 'Login' }">Log In</router-link>
+        </div>
       </div>
     </nav>
   </div>
@@ -29,15 +31,13 @@ import { useRouter } from "vue-router";
 import getUser from "../composables/getUser";
 export default {
   setup() {
-    const router = useRouter();
-    const { logout, error } = useLogout();
     const { user } = getUser();
+    const { logout } = useLogout();
+    const router = useRouter();
     const handleClick = async () => {
       await logout();
-      if (!error.value) {
-        console.log("User Logged Out");
-        router.push({ name: "Login" });
-      }
+      console.log("logged out");
+      router.push({ name: "Login" });
     };
     return { handleClick, user };
   },
