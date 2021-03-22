@@ -1,5 +1,7 @@
 # music-playlist
 
+music-playlist-fa074.firebaseapp.com
+
 ## Project setup
 ```
 npm install
